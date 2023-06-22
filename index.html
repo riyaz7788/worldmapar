@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1" /> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Web site created using create-react-app" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://libs.zappar.com/zappar-aframe/2.0.0/zappar-aframe.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
+    <script src="https://unpkg.com/aframe-chromakey-material/dist/aframe-chromakey-material.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../src/App.css">
+
+    <script src="gesture-detector.js"></script>
+    <script src="gesture-handler.js"></script>
+
+    <title>Milky Bar</title>
+</head>
+
+<body>
+    <script src="https://libs.zappar.com/zappar-mobile-only/0.0.2/zappar-mobileonly.js"></script>
+
+
+
+
+
+    <script>
+        if (!MobileOnly.isMobile()) {
+            MobileOnly.showUI({
+                url: 'www.zappar.com'
+            });
+        }
+        var australiaques = [
+            ["If Asia is the largest, this continent is the smallest of all continents. Any guesses?     ", 'Australia   ', 'Africa ', 'Europe  ', 0],
+            ["Made up from almost 3000 reefs, big enough to be visible from the space, which reef are we talking about?   ", "Red Sea Coral Reef  ", "Maldives Coral Reef   ", "The Great Barrier Reef  ", 0],
+            [" Australia boasts of the world’s largest fence, what Australian creatures were they supposed to keep out?     ", " Kangaroos ", "Dingoes    ", "Koala  ", 0],
+        ]
+        var antarticaques = [
+            ["Antarctica is cold, harsh, but surprisingly can be called the same thing as Sahara in Africa. What is it?  ", 'Desert ', 'Polar Region  ', 'Mountain  ', 0],
+            ["90% of the planet’s ice is here. No wonder it’s called the world’s refrigerator. Guess where? ", "Asia ", "Europe , Antarctica ",  0],
+            ["Wherever you see or go, it points to only one direction in Antarctica? Which is it?   ", "North   ", "South    ", "East ", 0],
+        ]
+        var africaques = [
+            ["If you are going to the largest hot desert in the world, where are you going? ", 'Sahara Desert ', 'Gobi Desert ', 'Atacama Desert', 0],
+            ["Which river is considered the longest river in the world?  ", "Amazon River", "Nile River", "Yangtze River", 0],
+            ["If you had to climb the tallest mountain in Africa, you will have to climb almost 20000 feet, which mountain is it?  ", "Mountain Kilimanjaro ", "Mount Everest ", "Mount Fuji ", 0],
+        ]
+        var asiaques = [
+        ["An easy one. Most number of people around the world call this home, where are we?   ", 'Asia ', 'Africa ', 'Antarctica ', 0],
+            ["Mountains so large, it is spread across five countries, Bhutan India, China, Nepal, and Pakistan.  ", "Kilimanjaro ", "Himalayas.  ", "Fuji ", 0],
+            [" Despite 2300 language spoken here, this Asian language is the most spoken.   ", " Arabic ", "Spanish   ", "Chinese ", 0],
+        ]
+        var euroques = [
+            ["Europe is home to the world’s smallest country. Hint- It likes to call itself a city when it’s actually a country.  ", 'Vatican City ', 'Russia', 'Italy', 0],
+            ["Here’s a red hot one for you, can you name Europe’s highest active volcano.  ", "Mount Stromboli ", "Mount Etna ", "Mount Vesuvius  ", 0],
+            ["Europe got its name from a famous princess, take a guess which one?  ", "Princess Europa ", "Princess Isabella ", "Princess Victoria ", 0],
+        ]
+        var northamericaques = [
+            [" Which continent is named after the famous Italian explorer Amerigo Vespucci. Hint- The answer is in the name.  ", 'North America ', 'South America ', 'Asia ', 0],
+            ["In between Pacific and Arctic Ocean, this strait separates Asia and north America, which is it?  ", "Strait of Malacca ", "Strait of Hormuz   ", "Bering Strait ", 0],
+            ["Considered the largest freshwater lake in the world, this great lake is not inferior at all? ", "Lake Victoria   ", "Lake Superior  ", "Lake Michigan ", 0],
+        ]
+
+        var southamericaques = [
+            [" Home to the longest mountain range- Andes, the highest waterfalls- the Angel Falls, the driest place- the Atacama Desert. Where are we?", ' South America ', 'Europe ', 'Asia ', 0],
+            ["Home to ten percent of the world’s known species, can you guess the name of the world’s largest rainforest.  ", "Amazon ", "Gobi  ", "Congo ", 0],
+            [" Which enormous 50 miles wide lake are you visiting, if you are near Peru and Bolivia?  ", " Lake Victoria  ", "Lake Superior", "Lake Titicaca", 0],
+        ]
+        function instructionfun() {
+            console.log("instruction call")
+            instructiongif.style.display = "block"
+            setTimeout(() => {
+                instructiongif.style.display = "none"
+                // createglobe()
+                displaylogoinfo()
+
+
+            }, 5000);
+        }
+        
+        function displaylogoinfo() {
+            infobutton1.style.display = "block"
+            logotop.style.display = "block"
+        }
+        var check 
+        // var check1
+        
+        AFRAME.registerComponent("globe-click", {
+            init() {
+                console.log("start")
+
+
+                instanttracker = document.getElementById('instant-tracker')
+                const id1 = document.getElementById('id1')
+                const id2 = document.getElementById('id2')
+                const id3 = document.getElementById('id3')
+                const id4 = document.getElementById('id4')
+                var demo = document.getElementById('tridemo')
+                var demo1 = document.getElementById('tridemo1')
+                var demo2 = document.getElementById('tridemo2')
+                var cur_model
+
+                // const africa = document.getElementById('africa')
+                // const asia = document.getElementById('asia')
+                // const europe = document.getElementById('europe')
+                const australia = document.getElementById('australia')
+                const antartica = document.getElementById('antartica')
+                const passportbutton = document.getElementById('passportbutton')
+                var instanttracker = document.getElementById('instant-tracker')
+                var instructiongif = document.getElementById('instructiongif')
+
+
+                // const northamerica = document.getElementById('northamerica')
+                // const southamerica = document.getElementById('southamerica')
+
+                // const asia = document.getElementById("asia")
+                // console.log(heartmod)
+                // const ausc1 = document.getElementById('ausc1')
+                // const ausc2 = document.getElementById('ausc2')
+
+                // const ausc3 = document.getElementById('ausc3') 
+                function modelremove(mod) {
+                    mod.remove()
+
+                }
+                function answers(id,correct, x, questions, index) {
+                    console.log(correct,"h");
+
+                    if (x === 'r') {
+                        //wrong answer
+                        id.style.backgroundColor = 'red'
+                        correct.innerHTML="OOPS WRONG ANSWER"
+                        
+
+                    }
+                    else {
+
+                        //right answer
+                        id.style.backgroundColor = 'green'
+                        correct.innerHTML="PERFECT CORRECT ANSWER"
+
+                        console.log(id)
+                        if (questions === australiaques) {
+                            questions[index][4] = questions[index][4] + 1;
+                            console.log(questions[index][4])
+                            australiaques = questions
+                            console.log(australiaques[index][4] + "hey")
+                        } else if (questions === antarticaques) {
+                            questions[index][4] = questions[index][4] + 1;
+                            console.log(questions[index][4])
+                            antarticaques = questions
+                            console.log(antarticaques[index][4] + "hey")
+                        }
+                        else if (questions === northamericaques) {
+                            questions[index][4] = questions[index][4] + 1;
+                            console.log(questions[index][4])
+                            northamericaques = questions
+                            console.log(northamericaques[index][4] + "hey")
+                        } else if (questions === euroques) {
+                            questions[index][4] = questions[index][4] + 1;
+                            console.log(questions[index][4])
+                            euroques = questions
+                            console.log(euroques[index][4] + "hey")
+                        }
+                        else if (questions === africaques) {
+                            questions[index][4] = questions[index][4] + 1;
+                            console.log(questions[index][4])
+                            africaques = questions
+                            console.log(africaques[index][4] + "hey")
+                        } else if (questions === asiaques) {
+                            questions[index][4] = questions[index][4] + 1;
+                            console.log(questions[index][4])
+                            asiaques = questions
+                            console.log(asiaques[index][4] + "hey")
+                        } else if (questions === southamericaques) {
+                            questions[index][4] = questions[index][4] + 1;
+                            console.log(questions[index][4])
+                            southamericaques = questions
+                            console.log(southamericaques[index][4] + "hey")
+                        }
+
+                        // TriviaDiv.style.display = "none"
+                        // TriviaDiv.style.display = "none"
+                        // homepass.style.display = "block"
+                        //  dem.style.backgroundColor = 'green'
+
+
+
+                    }
+
+                }
+                function trivia(index, questions, opt1, opt2, opt3) {
+
+                    document.getElementById('btnn').click()
+                    id2.style.backgroundColor = 'white'
+                    id3.style.backgroundColor = 'white'
+                    id4.style.backgroundColor = 'white'
+                    // homepass.style.display = "none"
+                    id1.innerHTML = `${questions[index][0]}`
+                    id2.innerHTML = `${questions[index][1]}`
+                    id3.innerHTML = `${questions[index][2]}`
+                    id4.innerHTML = `${questions[index][3]}`
+                    homepass.style.display = "none"
+                    id2.onclick = () => {
+                        console.log("option1")
+                        // demo.style.display="block"
+                        console.log(questions)
+
+                        answers(id2,correct1, opt1, questions, index)
+
+                    }
+
+                    id3.onclick = () => {
+                        console.log("option2")
+                        // id3.style.backgroundColor="green"
+                        console.log(questions)
+                        answers(id3,correct2, opt2, questions, index)
+                    }
+
+                    id4.onclick = () => {
+                        console.log("option3")
+                        // id4.style.backgroundColor="red"
+                        console.log(questions)
+                        answers(id4, correct3,opt3, questions, index)
+
+                    }
+
+                }
+                closebutton.onclick = () => {
+                      homepass.style.display="block"
+                      logotop.style.display="block"
+                }
+                checkAns.onclick = () => {
+                    check.style.backgroundColor="green"
+                }
+                passportbutton.onclick = () => {
+                    const arscene = document.getElementById('arscene')
+                    const mobilebiewonly = document.getElementById('mobilebiewonly')
+
+
+                    if (australiaques[0][4] === 0 || australiaques[1][4] === 0 || australiaques[2][4] === 0) {
+                        console.log(" continent not done")
+                    } else {
+                        ausimage.src = './images/Continents/australia - unlock-01-01.png'
+                        console.log(" continent done")
+                    }
+
+                    if (antarticaques[0][4] === 0 || antarticaques[1][4] === 0 || antarticaques[2][4] === 0) {
+                        console.log(" continent not done")
+                    } else {
+                        antimage.src = './images/Continents/antratica-unlock-01.png'
+                        console.log(" continent done")
+                    }
+                    if (northamericaques[0][4] === 0 || northamericaques[1][4] === 0 || northamericaques[2][4] === 0) {
+                        console.log(" continent not done")
+                    } else {
+                        northimage.src = './images/Continents/north america - unlock-01-01.png'
+                        console.log(" continent done")
+                    }
+                    if (euroques[0][4] === 0 || euroques[1][4] === 0 || euroques[2][4] === 0) {
+                        console.log(" continent not done")
+                    } else {
+                        euroimage.src = './images/Continents/europe - unlock-01-01.png'
+                        console.log(" continent done")
+                    }
+                    if (africaques[0][4] === 0 || africaques[1][4] === 0 || africaques[2][4] === 0) {
+                        console.log(" continent not done")
+                    } else {
+                        afrimage.src = './images/Continents/europe - unlock-01-01.png'
+                        console.log(" continent done")
+                    }
+                    if (asiaques[0][4] === 0 || asiaques[1][4] === 0 || asiaques[2][4] === 0) {
+                        console.log(" continent not done")
+                    } else {
+                        asiaimage.src = './images/Continents/europe - unlock-01-01.png'
+                        console.log(" continent done")
+                    }
+                    if (southamericaques[0][4] === 0 || southamericaques[1][4] === 0 || southamericaques[2][4] === 0) {
+                        console.log(" continent not done")
+                    } else {
+                        southimage.src = './images/Continents/europe - unlock-01-01.png'
+                        console.log(" continent done")
+                    }
+
+
+
+                    arscene.style.display = "none"
+                    mobilebiewonly.style.display = "block"
+                    modelremove(cur_model)
+
+                }
+
+                const placementUI = document.getElementById("zappar-placement-ui");
+
+                placementUI.onclick = () => {
+                    var homepass = document.getElementById("homepass")
+                    homepass.style.display = "block"
+                    // infobutton1.style.display = "none"
+                    // Set placement mode to false on our instant tracker
+                    // const instantTracker = document.getElementById("instant-tracker");
+                    instanttracker.setAttribute("zappar-instant", "placement-mode: false");
+                    // And remove the placement UI
+                    placementUI.style.display = "none"
+                }
+                // const modalopen=document.querySelector(".modal-open")
+                agree.onclick = () => {
+                    createglobe()
+                    agreediv.style.display = "none"
+                    cookiediv.style.display = "block"
+
+                    // modalopen.style.display="none"
+
+                }
+
+                function createglobe() {
+
+                    // instructiongif.style.display = "block"
+                    setTimeout(() => {
+                        // instructiongif.style.display = "none"
+                        globe.setAttribute("visible", "true")
+
+                    }, 2000);
+                    instanttracker.setAttribute("zappar-instant", "placement-mode: true");
+
+                    // homepass.style.display = "none"
+
+                    const infobutton1 = document.getElementById('infobutton1')
+                    // infobutton1.style.display = "block"
+                    // logotop.style.display="block"
+                    var sceneEl = document.querySelector('a-scene');
+                    var globe = document.createElement('a-entity');
+                    var TriviaDiv = document.getElementById('TriviaDiv')
+                    console.log(TriviaDiv)
+                    globe.setAttribute("gltf-model", "#globemodel")
+                    globe.setAttribute("visible", "false")
+
+                    globe.setAttribute("position", "0 0 -3")
+                    globe.setAttribute("gesture-handler", "minScale: 0.25; maxScale: 10")
+                    // globe.setAttribute("class", "cantap clickable")
+                    globe.setAttribute("scale", "2 2 2")
+                    instanttracker.appendChild(globe);
+                    const globecontmodel = ['#africamodel', '#asiamodel', '#europemodel', '#australiamodel', '#antarticamodel', '#northamericamodel', '#southamericamodel']
+                    const globecont = []
+                    //Australia 
+                    const australia = document.createElement('a-entity');
+                    australia.setAttribute("gltf-model", globecontmodel[3])
+                    australia.setAttribute("class", "cantap clickable")
+                    globe.appendChild(australia);
+                    australia.onclick = () => {
+                        infobutton1.style.display = "none"
+                        console.log("sss")
+                        var sceneEl = document.querySelector('a-scene');
+                        var australiacont = document.createElement('a-entity');
+                        // const placementUI = document.getElementById("zappar-placement-ui");
+                        flat = document.getElementById('surfacedloaderdiv');
+                        flat.style.display = 'block'
+
+                        const ausc = ['assets/Globemodels/Australia/auschest1.glb', 'assets/Globemodels/Australia/auschest2.glb', 'assets/Globemodels/Australia/auschest3.glb']
+                        const auscent = []
+                        cur_model = australiacont
+                        australiacont.setAttribute("visible", "false")
+
+                        australiacont.setAttribute("gltf-model", "assets/Globemodels/Australia/ausground1.glb")
+                        australiacont.setAttribute("position", "0 -1 0")
+                        australiacont.setAttribute("gesture-handler", "minScale: 0.25; maxScale: 10")
+                        australiacont.setAttribute("class", "cantap clickable")
+
+                        australiacont.setAttribute("animation-mixer", {
+                            clip: '*',
+                            loop: 'repeat',
+                            crossFadeDuration: 0.4,
+                        })
+                        instanttracker.appendChild(australiacont);
+                        setTimeout(() => {
+                            flat.style.display = 'none'
+                            placementUI.style.display = 'block'
+                            australiacont.setAttribute("visible", "true")
+                            for (let index = 0; index < ausc.length; index++) {
+                                auscent[index] = document.createElement('a-entity');
+                                auscent[index].setAttribute("gltf-model", ausc[index])
+                                auscent[index].setAttribute("class", "cantap clickable")
+                                australiacont.appendChild(auscent[index]);
+                                console.log(auscent[index])
+                                auscent[index].onclick = () => {
+                                    console.log(index)
+                                    if (index === 0) {
+                                        check=id3
+                                        // check1=correct2
+                                        imageChange.src="./images/tree.png"
+                                        console.log(index)
+                                        logotop.style.display = "none"
+                                        trivia(index, australiaques, 'r', 'g', 'r')
+                                        TriviaDiv.style.display = "block"
+                                    }
+                                    if (index === 1) {
+                                        check=id2
+                                        // check1=correct1
+                                        imageChange.src="./images/tree.png"
+                                        console.log(index)
+                                        logotop.style.display = "none"
+                                        trivia(index, australiaques, 'g', 'r', 'r')
+                                        TriviaDiv.style.display = "block"
+                                    }
+                                    if (index === 2) {
+                                        check=id2
+                                        // check1=correct1
+                                        imageChange.src="./images/tree.png"
+                                        console.log(index)
+                                        logotop.style.display = "none"
+                                        trivia(index, australiaques, 'g', 'r', 'r')
+                                        TriviaDiv.style.display = "block"
+                                    }
+                                }
+                            }
+                        }, 4000);
+
+
+                        console.log("click4")
+                        globe.remove()
+                        // }
+
+                    }
+
+
+                    //Antartica
+                    const antartica = document.createElement('a-entity');
+                    antartica.setAttribute("gltf-model", globecontmodel[4])
+                    antartica.setAttribute("class", "cantap clickable")
+                    globe.appendChild(antartica);
+
+                    antartica.onclick = () => {
+                        infobutton1.style.display = "none"
+                        console.log("antartica")
+                        var sceneEl = document.querySelector('a-scene');
+                        var antarticacont = document.createElement('a-entity');
+                        const placementUI = document.getElementById("zappar-placement-ui");
+                        flat = document.getElementById('surfacedloaderdiv');
+                        flat.style.display = 'block'
+
+                        const antc = ['assets/Globemodels/Antartica/antarcticachest1.glb', 'assets/Globemodels/Antartica/antarcticachest2.glb', 'assets/Globemodels/Antartica/antarcticachest3.glb']
+                        const antcent = []
+                        cur_model = antarticacont
+
+                        antarticacont.setAttribute("visible", "false")
+
+                        antarticacont.setAttribute("gltf-model", "assets/Globemodels/Antartica/antarctica.glb")
+                        antarticacont.setAttribute("position", "0 -1 0")
+                        antarticacont.setAttribute("gesture-handler", "minScale: 0.25; maxScale: 10")
+                        antarticacont.setAttribute("class", "cantap clickable")
+
+                        antarticacont.setAttribute("animation-mixer", {
+                            clip: '*',
+                            loop: 'repeat',
+                            crossFadeDuration: 0.4,
+                        })
+                        instanttracker.appendChild(antarticacont);
+                        setTimeout(() => {
+                            flat.style.display = 'none'
+                            placementUI.style.display = 'block'
+                            antarticacont.setAttribute("visible", "true")
+                            for (let index = 0; index < antc.length; index++) {
+                                antcent[index] = document.createElement('a-entity');
+                                antcent[index].setAttribute("gltf-model", antc[index])
+                                antcent[index].setAttribute("class", "cantap clickable")
+                                antarticacont.appendChild(antcent[index]);
+                                console.log(antcent[index])
+                                antcent[index].onclick = () => {
+                                    logotop.style.display = "none"
+                                    console.log(index)
+                                    if (index === 0) {
+                                        console.log(index)
+
+                                        trivia(index, antarticaques, 'r', 'r', 'g')
+                                        TriviaDiv.style.display = "block"
+                                    }
+                                    if (index === 1) {
+                                        console.log(index)
+
+                                        trivia(index, antarticaques, 'g', 'r', 'r')
+                                        TriviaDiv.style.display = "block"
+                                    }
+                                    if (index === 2) {
+                                        console.log(index)
+
+                                        trivia(index, antarticaques, 'r', 'r', 'g')
+                                        TriviaDiv.style.display = "block"
+                                    }
+                                }
+                            }
+
+                        }, 4000);
+
+                        console.log("click4")
+                        globe.remove()
+
+
+                    }
+
+                    //NorthAmerica                    
+                    const northamerica = document.createElement('a-entity');
+                    northamerica.setAttribute("gltf-model", globecontmodel[5])
+                    northamerica.setAttribute("class", "cantap clickable")
+                    globe.appendChild(northamerica);
+
+                    northamerica.onclick = () => {
+                        infobutton1.style.display = "none"
+
+
+                        console.log("sss")
+                        var sceneEl = document.querySelector('a-scene');
+                        var northamericacont = document.createElement('a-entity');
+                        const placementUI = document.getElementById("zappar-placement-ui");
+                        flat = document.getElementById('surfacedloaderdiv');
+                        flat.style.display = 'block'
+
+                        const northc = ['assets/Globemodels/NorthAmerica/nachest1.glb', 'assets/Globemodels/NorthAmerica/nachest2.glb', 'assets/Globemodels/NorthAmerica/nachest3.glb']
+                        const northcent = []
+                        cur_model = northamericacont
+
+                        northamericacont.setAttribute("visible", "false")
+
+                        northamericacont.setAttribute("gltf-model", "assets/Globemodels/NorthAmerica/northamerica.glb")
+                        northamericacont.setAttribute("position", "0 -1 0")
+                        northamericacont.setAttribute("gesture-handler", "minScale: 0.25; maxScale: 10")
+                        northamericacont.setAttribute("class", "cantap clickable")
+
+                        northamericacont.setAttribute("animation-mixer", {
+                            clip: '*',
+                            loop: 'repeat',
+                            crossFadeDuration: 0.4,
+                        })
+                        instanttracker.appendChild(northamericacont);
+                        setTimeout(() => {
+                            flat.style.display = 'none'
+                            placementUI.style.display = 'block'
+                            northamericacont.setAttribute("visible", "true")
+                            for (let index = 0; index < northc.length; index++) {
+                                northcent[index] = document.createElement('a-entity');
+                                northcent[index].setAttribute("gltf-model", northc[index])
+                                northcent[index].setAttribute("class", "cantap clickable")
+                                northamericacont.appendChild(northcent[index]);
+                                console.log(northcent[index])
+                                northcent[index].onclick = () => {
+                                    console.log(index)
+                                    if (index === 0) {
+                                        console.log(index)
+
+                                        trivia(index, northamericaques, 'r', 'g', 'r')
+                                        TriviaDiv.style.display = "block"
+                                    }
+                                    if (index === 1) {
+                                        console.log(index)
+
+                                        trivia(index, northamericaques, 'r', 'r', 'g')
+                                        TriviaDiv.style.display = "block"
+                                    }
+                                    if (index === 2) {
+                                        console.log(index)
+
+                                        trivia(index, northamericaques, 'r', 'r', 'g')
+                                        TriviaDiv.style.display = "block"
+                                    }
+                                }
+                            }
+                        }, 4000);
+
+
+                        console.log("click4")
+                        globe.remove()
+
+
+                    }
+
+                    //Africa
+                    const africa = document.createElement('a-entity');
+                    africa.setAttribute("gltf-model", globecontmodel[0])
+                    africa.setAttribute("class", "cantap clickable")
+                    globe.appendChild(africa);
+                    africa.onclick = () => {
+                        infobutton1.style.display = "none"
+
+                        console.log("sss")
+                        var sceneEl = document.querySelector('a-scene');
+                        var africacont = document.createElement('a-entity');
+                        flat = document.getElementById('surfacedloaderdiv');
+                        flat.style.display = 'block'
+
+                        const afrc = ['assets/Globemodels/Africa/africachest1.glb', 'assets/Globemodels/Africa/africachest2.glb', 'assets/Globemodels/Africa/africachest3.glb']
+                        const afrcent = []
+                        cur_model = africacont
+                        africacont.setAttribute("visible", "false")
+
+                        africacont.setAttribute("gltf-model", "assets/Globemodels/Africa/africaground.glb")
+                        africacont.setAttribute("position", "0 -1 0")
+                        africacont.setAttribute("gesture-handler", "minScale: 0.25; maxScale: 10")
+                        africacont.setAttribute("class", "cantap clickable")
+
+                        africacont.setAttribute("animation-mixer", {
+                            clip: '*',
+                            loop: 'repeat',
+                            crossFadeDuration: 0.4,
+                        })
+                        instanttracker.appendChild(africacont);
+                        setTimeout(() => {
+                            flat.style.display = 'none'
+                            placementUI.style.display = 'block'
+                            africacont.setAttribute("visible", "true")
+                            for (let index = 0; index < afrc.length; index++) {
+                                afrcent[index] = document.createElement('a-entity');
+                                afrcent[index].setAttribute("gltf-model", afrc[index])
+                                afrcent[index].setAttribute("class", "cantap clickable")
+                                africacont.appendChild(afrcent[index]);
+                                console.log(afrcent[index])
+                                afrcent[index].onclick = () => {
+                                    console.log(index)
+                                    if (index === 0) {
+                                        console.log(index)
+
+                                        trivia(index, africaques, 'r', 'g', 'r')
+                                        TriviaDiv.style.display = "block"
+                                    }
+                                    if (index === 1) {
+                                        console.log(index)
+
+                                        trivia(index, africaques, 'g', 'r', 'r')
+                                        TriviaDiv.style.display = "block"
+                                    }
+                                    if (index === 2) {
+                                        console.log(index)
+
+                                        trivia(index, africaques, 'g', 'r', 'r')
+                                        TriviaDiv.style.display = "block"
+                                    }
+                                }
+                            }
+                        }, 4000);
+
+
+                        console.log("click4")
+                        globe.remove()
+                        // }
+
+                    }
+
+
+
+                    //Asia
+                    const asia = document.createElement('a-entity');
+                    asia.setAttribute("gltf-model", globecontmodel[1])
+                    asia.setAttribute("class", "cantap clickable")
+                    globe.appendChild(asia);
+                    asia.onclick = () => {
+                        infobutton1.style.display = "none"
+                        console.log("sss")
+                        var sceneEl = document.querySelector('a-scene');
+                        var asiacont = document.createElement('a-entity');
+                        flat = document.getElementById('surfacedloaderdiv');
+                        flat.style.display = 'block'
+
+                        const asiac = ['assets/Globemodels/Asia/asiachest1.glb', 'assets/Globemodels/Asia/asiachest2.glb', 'assets/Globemodels/Asia/asiachest3.glb']
+                        const asiacent = []
+                        cur_model = asiacont
+                        asiacont.setAttribute("visible", "false")
+
+                        asiacont.setAttribute("gltf-model", "assets/Globemodels/Asia/asiaground.glb")
+                        asiacont.setAttribute("position", "0 -1 0")
+                        asiacont.setAttribute("gesture-handler", "minScale: 0.25; maxScale: 10")
+                        asiacont.setAttribute("class", "cantap clickable")
+
+                        asiacont.setAttribute("animation-mixer", {
+                            clip: '*',
+                            loop: 'repeat',
+                            crossFadeDuration: 0.4,
+                        })
+                        instanttracker.appendChild(asiacont);
+                        setTimeout(() => {
+                            flat.style.display = 'none'
+                            placementUI.style.display = 'block'
+                            asiacont.setAttribute("visible", "true")
+                            for (let index = 0; index < asiac.length; index++) {
+                                asiacent[index] = document.createElement('a-entity');
+                                asiacent[index].setAttribute("gltf-model", asiac[index])
+                                asiacent[index].setAttribute("class", "cantap clickable")
+                                asiacont.appendChild(asiacent[index]);
+                                console.log(asiacent[index])
+                                asiacent[index].onclick = () => {
+                                    console.log(index)
+                                    if (index === 0) {
+                                        console.log(index)
+
+                                        trivia(index, asiaques, 'r', 'g', 'r')
+                                        TriviaDiv.style.display = "block"
+                                    }
+                                    if (index === 1) {
+                                        console.log(index)
+
+                                        trivia(index, asiaques, 'g', 'r', 'r')
+                                        TriviaDiv.style.display = "block"
+                                    }
+                                    if (index === 2) {
+                                        console.log(index)
+
+                                        trivia(index, asiaques, 'g', 'r', 'r')
+                                        TriviaDiv.style.display = "block"
+                                    }
+                                }
+                            }
+                        }, 4000);
+
+
+                        console.log("click4")
+                        globe.remove()
+                        // }
+
+                    }
+
+                    //Europe
+                    const europe = document.createElement('a-entity');
+                    europe.setAttribute("gltf-model", globecontmodel[2])
+                    europe.setAttribute("class", "cantap clickable")
+                    globe.appendChild(europe);
+                    europe.onclick = () => {
+                        infobutton1.style.display = "none"
+                        console.log("sss")
+                        var sceneEl = document.querySelector('a-scene');
+                        var europecont = document.createElement('a-entity');
+                        flat = document.getElementById('surfacedloaderdiv');
+                        flat.style.display = 'block'
+
+                        const eurc = ['assets/Globemodels/Europe/euchest1.glb', 'assets/Globemodels/Europe/euchest2.glb', 'assets/Globemodels/Europe/euchest3.glb']
+                        const eurcent = []
+                        cur_model = europecont
+                        europecont.setAttribute("visible", "false")
+
+                        europecont.setAttribute("gltf-model", "assets/Globemodels/Europe/euground.glb")
+                        europecont.setAttribute("position", "0 -1 0")
+                        europecont.setAttribute("gesture-handler", "minScale: 0.25; maxScale: 10")
+                        europecont.setAttribute("class", "cantap clickable")
+
+                        europecont.setAttribute("animation-mixer", {
+                            clip: '*',
+                            loop: 'repeat',
+                            crossFadeDuration: 0.4,
+                        })
+                        instanttracker.appendChild(europecont);
+                        setTimeout(() => {
+                            flat.style.display = 'none'
+                            placementUI.style.display = 'block'
+                            europecont.setAttribute("visible", "true")
+                            for (let index = 0; index < eurc.length; index++) {
+                                eurcent[index] = document.createElement('a-entity');
+                                eurcent[index].setAttribute("gltf-model", eurc[index])
+                                eurcent[index].setAttribute("class", "cantap clickable")
+                                europecont.appendChild(eurcent[index]);
+                                console.log(eurcent[index])
+                                eurcent[index].onclick = () => {
+                                    console.log(index)
+                                    if (index === 0) {
+                                        console.log(index)
+
+                                        trivia(index, euroques, 'r', 'g', 'r')
+                                        TriviaDiv.style.display = "block"
+                                    }
+                                    if (index === 1) {
+                                        console.log(index)
+
+                                        trivia(index, euroques, 'g', 'r', 'r')
+                                        TriviaDiv.style.display = "block"
+                                    }
+                                    if (index === 2) {
+                                        console.log(index)
+
+                                        trivia(index, euroques, 'g', 'r', 'r')
+                                        TriviaDiv.style.display = "block"
+                                    }
+                                }
+                            }
+                        }, 4000);
+
+
+                        console.log("click4")
+                        globe.remove()
+                        // }
+
+                    }
+
+
+
+                    //South America
+                    const southamerica = document.createElement('a-entity');
+                    southamerica.setAttribute("gltf-model", globecontmodel[6])
+                    southamerica.setAttribute("class", "cantap clickable")
+                    globe.appendChild(southamerica);
+                    southamerica.onclick = () => {
+                        infobutton1.style.display = "none"
+                        console.log("sss")
+                        var sceneEl = document.querySelector('a-scene');
+                        var southamericacont = document.createElement('a-entity');
+                        flat = document.getElementById('surfacedloaderdiv');
+                        flat.style.display = 'block'
+
+                        const souc = ['assets/Globemodels/South America/sachest1.glb', 'assets/Globemodels/South America/sachest2.glb', 'assets/Globemodels/South America/sachest3.glb']
+                        const soucent = []
+                        cur_model = southamericacont
+                        southamericacont.setAttribute("visible", "false")
+
+                        southamericacont.setAttribute("gltf-model", "assets/Globemodels/South America/southamericaground.glb")
+                        southamericacont.setAttribute("position", "0 -1 0")
+                        southamericacont.setAttribute("gesture-handler", "minScale: 0.25; maxScale: 10")
+                        southamericacont.setAttribute("class", "cantap clickable")
+
+                        southamericacont.setAttribute("animation-mixer", {
+                            clip: '*',
+                            loop: 'repeat',
+                            crossFadeDuration: 0.4,
+                        })
+                        instanttracker.appendChild(southamericacont);
+                        setTimeout(() => {
+                            flat.style.display = 'none'
+                            placementUI.style.display = 'block'
+                            southamericacont.setAttribute("visible", "true")
+                            for (let index = 0; index < souc.length; index++) {
+                                soucent[index] = document.createElement('a-entity');
+                                soucent[index].setAttribute("gltf-model", souc[index])
+                                soucent[index].setAttribute("class", "cantap clickable")
+                                southamericacont.appendChild(soucent[index]);
+                                console.log(soucent[index])
+                                soucent[index].onclick = () => {
+                                    console.log(index)
+                                    if (index === 0) {
+                                        console.log(index)
+
+                                        trivia(index, southamericaques, 'r', 'g', 'r')
+                                        TriviaDiv.style.display = "block"
+                                    }
+                                    if (index === 1) {
+                                        console.log(index)
+
+                                        trivia(index, southamericaques, 'g', 'r', 'r')
+                                        TriviaDiv.style.display = "block"
+                                    }
+                                    if (index === 2) {
+                                        console.log(index)
+
+                                        trivia(index, southamericaques, 'g', 'r', 'r')
+                                        TriviaDiv.style.display = "block"
+                                    }
+                                }
+                            }
+                        }, 4000);
+
+
+                        console.log("click4")
+                        globe.remove()
+                        // }
+
+                    }
+
+
+
+                }
+                //             var start=document.getElementById("start")
+                // start.onclick=()=>{
+
+                // }
+                // createglobe()
+
+                //first home button
+                const homebutton = document.getElementById("homebutton")
+                homebutton.onclick = () => {
+                    createglobe()
+                    displaylogoinfo()
+                    modelremove(cur_model)
+
+                }
+                //second home button
+                const homebutton1 = document.getElementById("homebutton1")
+                homebutton1.onclick = () => {
+                    homepass.style.display="none"
+                    mobilebiewonly.style.display = "none"
+                    arscene.style.display = "block"
+                    createglobe()
+                    displaylogoinfo()
+                    // modelremove(cur_model)
+
+                }
+
+
+
+                // africa.onclick = () => {
+                //     console.log("click1")
+                //     globe.setAttribute('visible',false)
+                //     asiacont.setAttribute('visible',true)
+                // }
+                // asia.onclick = () => {
+                //     console.log("click2")
+                //     globe.setAttribute('visible',false)
+                //     asiacont.setAttribute('visible',true)
+                // }
+                // europe.onclick = () => {
+                //     console.log("click3")
+                //     globe.setAttribute('visible',false)
+                //     asiacont.setAttribute('visible',true)
+                // }
+                // australia.onclick = () => {
+                //     var sceneEl = document.querySelector('a-scene');
+                //     var australiacont = document.createElement('a-entity');               
+                //     const ausc = ['#chest1modelaustralia', '#chest2modelaustralia', '#chest3modelaustralia']
+                //     const auscent = []
+
+
+                //     australiacont.setAttribute("gltf-model", "#australiacontmodel")
+                //     australiacont.setAttribute("position", "0 -1 0")
+                //     australiacont.setAttribute("gesture-handler", "minScale: 0.25; maxScale: 10")
+                //     australiacont.setAttribute("class", "cantap clickable")
+
+
+                //     instanttracker.appendChild(australiacont);
+
+                //     for (let index = 0; index < ausc.length; index++) {
+                //         auscent[index] = document.createElement('a-entity');                                                                  
+                //         auscent[index].setAttribute("gltf-model", ausc[index])                        
+                //         auscent[index].setAttribute("class", "cantap clickable")
+                //         australiacont.appendChild(auscent[index]);
+                //         console.log(auscent[index])
+
+                //         auscent[index].onclick = () => {
+                //             console.log(index)
+                //         }
+                //     }
+
+                //     console.log("click4")
+                //     globe.remove()
+                //     // globe.setAttribute('visible',false)
+                //     // australiacont.setAttribute('visible',true)
+                // }
+                // ausc1.onclick = () => {
+                //     console.log("clicked")
+                // }
+                // ausc2.onclick = () => {
+                //     console.log("clicked")
+                // }
+                // ausc3.onclick = () => {
+                //     console.log("clicked")
+                // }
+                // antartica.onclick = () => {
+                //     console.log("click5")
+                //     globe.setAttribute('visible',false)
+                //     asiacont.setAttribute('visible',true)
+                // }
+                // northamerica.onclick = () => {
+                //     console.log("click6")
+                //     globe.setAttribute('visible',false)
+                //     asiacont.setAttribute('visible',true)
+                // }
+                // southamerica.onclick = () => {
+                //     console.log("click7")
+                //     globe.setAttribute('visible',false)
+                //     asiacont.setAttribute('visible',true)
+                // }
+            }
+        })
+        clsbtn.onclick = () =>{
+            homepass.style.display="block" 
+        }
+
+    </script>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <!-- -------------------------------------------------change----------------------------------------- -->
+    <button type="button" id="btnn" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#TriviaDiv" >
+        
+    </button>
+    <div id="TriviaDiv" class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content  triviaBackground">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel"></h5>
+            <!-- <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button> -->
+            <div class='d-flex justify-content-end px-2 py-3 Close '  id="closebutton" data-bs-dismiss="modal" aria-label="Close">     
+    <img id="clsbtn" src='./images/closed.png' />      
+              </div>
+            <div class='clouding'>
+              <h2 class='triviaQuestionTrivias text-center font-face-gm'>Trivia <br /> Question</h2>
+             <div class=' d-flex justify-content-center'>
+             <img class='cloudimg' src='./images/cloud.png'  />
+             </div>
+            </div>
+            <div  class='questioning d-flex justify-content-center container px-5 py-4'>
+              <p id="id1" class='triviaMainQue text-white font-face-gm'> What is the name of the mountain in Asia that has the highest elevation above sea level?  </p>
+         </div>
+            </div>
+          
+            <div class="modal-body triviaOption d-flex justify-content-center ">
+                <div class="accordion accordion-flush" id="accordionFlushExample">
+                    <div class="accordion-item ">
+                      <h2 class="accordion-header">
+                        <button id="id2"  class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                          Kilimanjaro
+                        </button>
+                      </h2>
+                      <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                        <div id="correct1" class="accordion-body">Perfect, Correct answer</div>
+                      </div>
+                    </div>
+                    <div  class="accordion-item">
+                      <h2 class="accordion-header">
+                        <button id="id3" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                          Everest
+                        </button>
+                      </h2>
+                      <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body" id="correct2">Oops, Wrong answer</div>
+                      </div>
+                    </div>
+                    <div  class="accordion-item">
+                      <h2 class="accordion-header">
+                        <button id="id4" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                          Fuji
+                        </button>
+                      </h2>
+                      <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body" id="correct3">Oops, Wrong answer</div>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+            <div class='py-3 d-flex justify-content-center'>
+              <p class='checkAnswerdiv text-white font-face-gm text-center' id="checkAns">Check Answer</p>
+            </div>
+            <div class='treeImage justify-content-start'>
+              <img id="imageChange" src='./images/tree.png' />
+            </div>
+        </div>
+        </div>
+    </div>
+
+
+    <!-- ---------------------------------------------------------------------------------------------------------- -->
+
+    <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Launch demo modal
+      </button> -->
+    <div id="agreediv" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-headers">
+                    <h5 class="modal-title disclaimer px-5 text-center  " id="exampleModalLabel">Disclaimer to Parents</h5>
+                    <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button> -->
+                </div>
+                <div class="modal-bod">
+                    The child should use the filters under guidance of parent/guardian. Find an open, well lit and safe
+                    area to experience .
+                </div>
+                <div class="d-flex justify-content-center ">
+                    <button id="agree" class="agreebtn " data-bs-dismiss="modal" data-bs-toggle="modal"
+                        data-bs-target="#cookiediv">I Agree</button>
+                </div>
+                <!-- <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div> -->
+            </div>
+        </div>
+    </div>
+
+    <!--          cookies      -->
+
+    <div class="modal fade" id="cookiediv" tabindex="-1" role="dialog" onclick="instructionfun()"
+        aria-labelledby="exampleModalLabel1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-contents">
+                <div class="modal-headersa d-flex justify-content-end">
+                    <h5 class="modal-title px-5 text-center" id="exampleModalLabel1"></h5>
+                    <div type="button" class="" data-bs-dismiss="modal" aria-label="Close">
+                        <!-- <span aria-hidden="true">&times;</span> -->
+                        <img src="./images/closebtncookie.png" />
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <img class="textacp" src="./images/textAccept.png" />
+                </div>
+                <div class="d-flex justify-content-center " >
+                    <button  id="acp" data-bs-dismiss="modal" class="acceptbtn font-face-gm" >Accept</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div id="instructiongif" style="display: none;">
+        <img class="gifAnim" src="./images/gifbanner.gif" alt="">
+    </div>
+    <div id="zappar-placement-ui"><img src="./images/Tap To Place.png" alt=""></div>
+    <!-- <div id="tap">
+        <img src="images/Tap To Place.png" alt="">
+    </div> -->
+    <div id="surfacedloaderdiv" class='surfacedloader'>
+        <div class='container flating d-flex justify-content-center align-items-center'>
+            <img class='grp' src='./images/Group.png' />
+            <CircularProgressbar class='loading ' value={percentage} />
+        </div>
+    </div>
+
+
+    <!-- </div> -->
+    <div class="d-flex">
+        <div id="logotop" class="p-3 flex-grow-2 milkybarlogo"><img src="./images/milkybarLogo.png" height="78px"
+                width="160px" alt='logo' /></div>
+        <div id="homepass" style="display:none;">
+            <div id="homebutton" class="p-3 homeiconsd"><img src='./images/hometab.png' /></div>
+            <!-- <span class='badged text-center'>9+</span> -->
+            <div id="passportbutton" class="p-3 souv"><img src='./images/passport -icon.png' /></div>
+        </div>
+        <div data-bs-toggle="modal" data-bs-target="#exampleModalCenter" id="infobutton1" class="p-2"><img class='infoExplore'  src='./images/infoLogo.png' alt='info' />
+        </div>
+
+    </div>
+
+
+    <!-- <div className="modal fade" id="exampleModalCenter" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div className="modal-dialog modal-dialog-centered" role="document">
+           <div className="modal-contents popupInstruction justify-content-center">
+                <div className="modal-header justify-content-center">
+                    <h5 className="modal-title instructionModalTitle font-face-gm" id="exampleModalLongTitle">Instructions</h5>
+                </div>
+                <div >
+                        <ol className="modal-bodys font-face-gm">
+                                    <li className='pad' >  Ready for an epic adventure? Rotate the globe and tap to choose the continent you want to visit</li>
+                                    <li className='pad'>   Find a flat surface and tap to place the continent you selected.</li>
+                                    <li className='pad'>   Within the continent, Tap the treasure chests to answer fun trivia questions. </li>
+                                    <li className='pad'>  Make sure to tap all three chests, to unlock that continent. </li>
+                                    <li className='pad'>     Go to the passport section, upload picture, download your personalised passport and share
+let's Go Exploring!</li>
+                                    {/* <li className='pad'>    Upload passport, download, and share. Let's go exploring!</li> */}
+                        </ol>
+                </div>
+                <div className="modal-footer justify-content-center">
+                    <button type="button" className="btn instructionCloseButton font-face-gm" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <div id="arscene">
+
+        <a-scene id="scene" gesture-detector globe-click renderer="antialias: true;
+                   colorManagement: true;
+                   sortObjects: true;
+                   physicallyCorrectLights: true;
+                   maxCanvasWidth: 1920;
+                   maxCanvasHeight: 1920;">
+            <!-- Ask user for camera permissions, display some text if permission is denied -->
+            <a-entity zappar-permissions-ui id="permissions"></a-entity>
+            <!-- shows a full-page dialog that informs the user they're using an unsupported browser -->
+            <a-entity zappar-compatibility-ui id="compatibility"></a-entity>
+            <a-assets>
+                <a-asset-item id="globemodel" src="assets/Globemodels/ocean.glb"></a-asset-item>
+                <a-asset-item id="africamodel" src="assets/Globemodels/africa.glb"></a-asset-item>
+                <a-asset-item id="asiamodel" src="assets/Globemodels/asia.glb"></a-asset-item>
+                <a-asset-item id="europemodel" src="assets/Globemodels/europe.glb"></a-asset-item>
+
+                <a-asset-item id="australiamodel" src="assets/Globemodels/australia.glb"></a-asset-item>
+                <a-asset-item id="antarticamodel" src="assets/Globemodels/antarctica.glb"></a-asset-item>
+                <a-asset-item id="northamericamodel" src="assets/Globemodels/north america.glb"></a-asset-item>
+                <a-asset-item id="southamericamodel" src="assets/Globemodels/south america.glb"></a-asset-item>
+
+                <!-- <a-asset-item id="africacontmodel" src="assets/Globemodels/na try1 (1).glb"></a-asset-item>
+        <a-asset-item id="chest1modelafrica" src="assets/Globemodels/chestcolor1.glb"></a-asset-item>
+        <a-asset-item id="chest2modelafrica" src="assets/Globemodels/chestcolor1.glb"></a-asset-item>
+        <a-asset-item id="chest3modelafrica" src="assets/Globemodels/chestcolor1.glb"></a-asset-item>
+
+        <a-asset-item id="asiacontmodel" src="assets/Globemodels/na try1 (1).glb"></a-asset-item>
+        <a-asset-item id="chest1modelasia" src="assets/Globemodels/chestcolor1.glb"></a-asset-item>
+        <a-asset-item id="chest2modelasia" src="assets/Globemodels/chestcolor1.glb"></a-asset-item>
+        <a-asset-item id="chest3modelasia" src="assets/Globemodels/chestcolor1.glb"></a-asset-item>
+
+        <a-asset-item id="europecontmodel" src="assets/Globemodels/na try1 (1).glb"></a-asset-item>
+        <a-asset-item id="chest1modeleurope" src="assets/Globemodels/chestcolor1.glb"></a-asset-item>
+        <a-asset-item id="chest2modeleurope" src="assets/Globemodels/chestcolor1.glb"></a-asset-item>
+        <a-asset-item id="chest3modeleurope" src="assets/Globemodels/chestcolor1.glb"></a-asset-item> -->
+
+                <!-- <a-asset-item id="australiacontmodel" src="assets/Globemodels/Australia/aus.glb"></a-asset-item> -->
+                <!-- <a-asset-item id="chest1modelaustralia" src="assets/Globemodels/Australia/aus chest1.glb"></a-asset-item>
+            <a-asset-item id="chest2modelaustralia" src="assets/Globemodels/Australia/aus chest2.glb"></a-asset-item>
+            <a-asset-item id="chest3modelaustralia" src="assets/Globemodels/Australia/aus chest3.glb"></a-asset-item> -->
+                <!-- <a-asset-item id="kangaroomodel" src="assets/Globemodels/Australia/kangaroo.glb"></a-asset-item> -->
+
+
+                <!-- <a-asset-item id="antarticacontmodel" src="assets/Globemodels/na try1 (1).glb"></a-asset-item>
+        <a-asset-item id="chest1modelantartica" src="assets/Globemodels/chestcolor1.glb"></a-asset-item>
+        <a-asset-item id="chest2modelantartica" src="assets/Globemodels/chestcolor1.glb"></a-asset-item>
+        <a-asset-item id="chest3modelantartica" src="assets/Globemodels/chestcolor1.glb"></a-asset-item>
+
+        <a-asset-item id="northamericacontmodel" src="assets/Globemodels/na try1 (1).glb"></a-asset-item>
+        <a-asset-item id="chest1modelnorthamerica" src="assets/Globemodels/chestcolor1.glb"></a-asset-item>
+        <a-asset-item id="chest2modelnorthamerica" src="assets/Globemodels/chestcolor1.glb"></a-asset-item>
+        <a-asset-item id="chest3modelnorthamerica" src="assets/Globemodels/chestcolor1.glb"></a-asset-item> -->
+
+
+
+
+
+
+
+
+            </a-assets>
+            <a-camera near="0.0001" far="1000" fov="180" id="camera" position="0 8 8" raycaster="objects: .cantap" cursor="
+                  fuse: false;
+                  rayOrigin: mouse;" zappar-camera />
+                  
+
+            <a-entity light="type: directional;
+             intensity: 0.8;
+        shadowMapHeight:2048;
+          shadowMapWidth:2048;
+          shadowCameraTop: 10;
+                target: #australiacont;" position="1 4.3 2.5" shadow>
+            </a-entity>
+            <a-light type="ambient" intensity="2"></a-light>
+
+
+            <!-- Setup our instant tracker and start it in placement mode so the user can -->
+            <!-- choose a location for the object -->
+            <a-entity zappar-instant="placement-mode: true" id="instant-tracker">
+                <!-- <a-entity id="australiacont" visible="false" class="cantap clickable" position="0 -1 0" gesture-handler="minScale: 0.25; maxScale: 10"  gltf-model="#australiacontmodel" > -->
+                <!-- <a-entity id="ausc1" class="cantap clickable"  animation-mixer="clip:HarrisChestClips ; loop: repeat" gltf-model="#chest1modelaustralia">
+                </a-entity>
+                <a-entity id="ausc2" class="cantap clickable"  animation-mixer="clip:HarrisChestClips ; loop: repeat" gltf-model="#chest2modelaustralia">
+                </a-entity>
+                <a-entity id="ausc3" class="cantap clickable"  animation-mixer="clip:HarrisChestClips ; loop: repeat" gltf-model="#chest3modelaustralia">
+                </a-entity> -->
+                <!-- </a-entity> -->
+
+                <!-- 
+            <a-entity id="globe" visible="true" class="cantap clickable" gesture-handler="minScale: 0.25; maxScale: 10"
+                gltf-model="#globemodel" scale="0.5 0.5 0.5" position="0 0 -3"> -->
+                <!-- <a-entity id="africa" class="cantap clickable" gltf-model="#africamodel"></a-entity>
+                <a-entity id="asia" class="cantap clickable" gltf-model="#asiamodel"></a-entity>
+                <a-entity id="europe" class="cantap clickable" gltf-model="#europemodel"></a-entity>
+
+                <a-entity id="australia" class="cantap clickable" gltf-model="#australiamodel"></a-entity>
+                
+                <a-entity  id="antartica" class="cantap clickable" gltf-model="#antarticamodel"></a-entity>
+                <a-entity id="northamerica" class="cantap clickable" gltf-model="#northamericamodel"></a-entity>
+                <a-entity id="southamerica" class="cantap clickable" gltf-model="#southamericamodel"></a-entity> -->
+                <!-- </a-entity> -->
+
+
+                <!-- </a-entity> -->
+
+                <!-- <a-entity
+            light="type: directional;
+               intensity: 2;
+               castShadow: true;
+               shadowMapHeight:2048;
+               shadowMapWidth:2048;
+               shadowCameraTop: 10;
+               target: #asiacont;"
+            position="1 4.3 2.5"
+         
+            shadow>
+        </a-entity> -->
+                <!-- <a-entity
+            light="type: directional;
+               intensity: 1.5;
+               castShadow: true;
+               shadowMapHeight:2048;
+               shadowMapWidth:2048;
+               shadowCameraTop: 10;
+               target: #chest1;"
+            position="1 4.3 2.5"
+         
+            shadow>
+        </a-entity> -->
+                <!-- <a-light type="ambient" intensity="1.5"></a-light> -->
+
+                <!-- <a-entity
+        light="type: directional;
+           intensity: 2;
+           
+           target: #globe;"
+        position="0.8 1.1 2.3"
+       
+        shadow>
+    </a-entity> -->
+
+            </a-entity>
+
+        </a-scene>
+    </div>
+    <script>
+
+
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
+</body>
+
+
+
+</html>
+
+<!-- https://github.com/rachit-chaudhary/milkybar-world-map-ar.git -->
