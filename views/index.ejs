@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+
+
+
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://libs.zappar.com/zappar-aframe/2.0.0/zappar-aframe.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
+
+    <script src="https://unpkg.com/aframe-chromakey-material/dist/aframe-chromakey-material.min.js"></script>
+
+
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="gesture-detector.js"></script>
+    <script src="gesture-handler.js"></script>
+</head>
+
+<body>
+    <script>
+        AFRAME.registerComponent("globe-click", {
+            init() {
+                console.log("start")
+
+                const instanttracker = document.getElementById('instant-tracker')
+
+                // const africa = document.getElementById('africa')
+                // const asia = document.getElementById('asia')
+                // const europe = document.getElementById('europe')
+                const australia = document.getElementById('australia')
+                // const antartica = document.getElementById('antartica')
+                // const northamerica = document.getElementById('northamerica')
+                // const southamerica = document.getElementById('southamerica')
+
+                // const asia = document.getElementById("asia")
+                // console.log(heartmod)
+                // const ausc1 = document.getElementById('ausc1')
+                // const ausc2 = document.getElementById('ausc2')
+                // const ausc3 = document.getElementById('ausc3') 
+
+                      
+                function createglobe() {
+                    var sceneEl = document.querySelector('a-scene');
+                    var globe = document.createElement('a-entity');
+                    globe.setAttribute("gltf-model", "#globemodel")
+                    globe.setAttribute("position", "0 0 -3")
+                    globe.setAttribute("gesture-handler", "minScale: 0.25; maxScale: 10")
+                    globe.setAttribute("class", "cantap clickable")
+                    globe.setAttribute("scale", "0.5 0.5 0.5")
+                    instanttracker.appendChild(globe);
+                    const globecontmodel = ['#africamodel', '#asiamodel', '#europemodel', '#australiamodel', '#antarticamodel', '#northamericamodel', '#southamericamodel']
+                    const globecont = []
+
+                    for (let index = 0; index < globecontmodel.length; index++) {
+                        globecont[index] = document.createElement('a-entity');
+                        globecont[index].setAttribute("gltf-model", globecontmodel[index])
+                        globecont[index].setAttribute("class", "cantap clickable")
+                        globe.appendChild(globecont[index]);
+                        // console.log(auscent[index])
+
+                        globecont[index].onclick = () => {
+                            console.log(index)
+                            if (index === 3) {
+                                var sceneEl = document.querySelector('a-scene');
+                                var australiacont = document.createElement('a-entity');
+                                const ausc = ['assets/Globemodels/Australia/aus chest1.glb', 'assets/Globemodels/Australia/aus chest3.glb']
+                                const auscent = []
+
+                                australiacont.setAttribute("gltf-model", "assets/Globemodels/Australia/aus1.glb")
+                                australiacont.setAttribute("position", "0 -1 0")
+                                australiacont.setAttribute("gesture-handler", "minScale: 0.25; maxScale: 10")
+                                australiacont.setAttribute("class", "cantap clickable")
+                                australiacont.setAttribute("frustumCulled", "false")
+                                australiacont.setAttribute("animation-mixer", {
+                                    clip: '*',
+                                    loop: 'repeat',
+                                    crossFadeDuration: 0.4,
+                                })
+
+
+
+
+
+                                instanttracker.appendChild(australiacont);
+
+                                for (let index = 0; index < ausc.length; index++) 
+                                {
+                                    auscent[index] = document.createElement('a-entity');
+                                    auscent[index].setAttribute("gltf-model", ausc[index])
+                                    auscent[index].setAttribute("class", "cantap clickable")
+                                    australiacont.appendChild(auscent[index]);
+                                    console.log(auscent[index])
+                                    auscent[index].onclick = () => {
+                                        console.log(index)
+                                    }
+                                }
+
+                                console.log("click4")
+                                globe.remove()
+                            }else if (index === 4){
+                                var sceneEl = document.querySelector('a-scene');
+                                var antarticacont = document.createElement('a-entity');
+                                const ausc = ['assets/Globemodels/Australia/aus chest1.glb', 'assets/Globemodels/Australia/aus chest2.glb', 'assets/Globemodels/Australia/aus chest3.glb']
+                                const auscent = []
+
+                                antarticacont.setAttribute("gltf-model", "assets/Globemodels/Antartica/antarctica.glb")
+                                antarticacont.setAttribute("position", "0 -1 0")
+                                antarticacont.setAttribute("gesture-handler", "minScale: 0.25; maxScale: 10")
+                                antarticacont.setAttribute("class", "cantap clickable")
+
+                                // antarticacont.setAttribute("animation-mixer", {
+                                //     clip: '*',
+                                //     loop: 'repeat',
+                                //     crossFadeDuration: 0.4,
+                                // })
+
+
+
+                                instanttracker.appendChild(antarticacont);
+
+                                // for (let index = 0; index < ausc.length; index++) {
+                                //     auscent[index] = document.createElement('a-entity');
+                                //     auscent[index].setAttribute("gltf-model", ausc[index])
+                                //     auscent[index].setAttribute("class", "cantap clickable")
+                                //     australiacont.appendChild(auscent[index]);
+                                //     console.log(auscent[index])
+                                //     auscent[index].onclick = () => {
+                                //         console.log(index)
+                                //     }
+                                // }
+
+                                console.log("click4")
+                                globe.remove()
+                            }else if (index === 5){
+                                var sceneEl = document.querySelector('a-scene');
+                                var northamerica = document.createElement('a-entity');
+                                const ausc = ['assets/Globemodels/Australia/aus chest1.glb', 'assets/Globemodels/Australia/aus chest2.glb', 'assets/Globemodels/Australia/aus chest3.glb']
+                                const auscent = []
+
+                                northamerica.setAttribute("gltf-model", "assets/Globemodels/NorthAmerica/northamerica.glb")
+                                northamerica.setAttribute("position", "0 -1 0")
+                                northamerica.setAttribute("gesture-handler", "minScale: 0.25; maxScale: 10")
+                                northamerica.setAttribute("class", "cantap clickable")
+
+                                northamerica.setAttribute("animation-mixer", {
+                                    clip: '*',
+                                    loop: 'repeat',
+                                    crossFadeDuration: 0.4,
+                                })
+
+
+
+                                instanttracker.appendChild(northamerica);
+
+                                // for (let index = 0; index < ausc.length; index++) {
+                                //     auscent[index] = document.createElement('a-entity');
+                                //     auscent[index].setAttribute("gltf-model", ausc[index])
+                                //     auscent[index].setAttribute("class", "cantap clickable")
+                                //     australiacont.appendChild(auscent[index]);
+                                //     console.log(auscent[index])
+                                //     auscent[index].onclick = () => {
+                                //         console.log(index)
+                                //     }
+                                // }
+
+                                console.log("click4")
+                                globe.remove()
+                            }
+                        }
+                    }
+                }
+
+                createglobe()
+                // africa.onclick = () => {
+                //     console.log("click1")
+                //     globe.setAttribute('visible',false)
+                //     asiacont.setAttribute('visible',true)
+                // }
+                // asia.onclick = () => {
+                //     console.log("click2")
+                //     globe.setAttribute('visible',false)
+                //     asiacont.setAttribute('visible',true)
+                // }
+                // europe.onclick = () => {
+                //     console.log("click3")
+                //     globe.setAttribute('visible',false)
+                //     asiacont.setAttribute('visible',true)
+                // }
+                // australia.onclick = () => {
+                //     var sceneEl = document.querySelector('a-scene');
+                //     var australiacont = document.createElement('a-entity');               
+                //     const ausc = ['#chest1modelaustralia', '#chest2modelaustralia', '#chest3modelaustralia']
+                //     const auscent = []
+
+
+                //     australiacont.setAttribute("gltf-model", "#australiacontmodel")
+                //     australiacont.setAttribute("position", "0 -1 0")
+                //     australiacont.setAttribute("gesture-handler", "minScale: 0.25; maxScale: 10")
+                //     australiacont.setAttribute("class", "cantap clickable")
+
+
+                //     instanttracker.appendChild(australiacont);
+
+                //     for (let index = 0; index < ausc.length; index++) {
+                //         auscent[index] = document.createElement('a-entity');                                                                  
+                //         auscent[index].setAttribute("gltf-model", ausc[index])                        
+                //         auscent[index].setAttribute("class", "cantap clickable")
+                //         australiacont.appendChild(auscent[index]);
+                //         console.log(auscent[index])
+
+                //         auscent[index].onclick = () => {
+                //             console.log(index)
+                //         }
+                //     }
+
+                //     console.log("click4")
+                //     globe.remove()
+                //     // globe.setAttribute('visible',false)
+                //     // australiacont.setAttribute('visible',true)
+                // }
+                // ausc1.onclick = () => {
+                //     console.log("clicked")
+                // }
+                // ausc2.onclick = () => {
+                //     console.log("clicked")
+                // }
+                // ausc3.onclick = () => {
+                //     console.log("clicked")
+                // }
+                // antartica.onclick = () => {
+                //     console.log("click5")
+                //     globe.setAttribute('visible',false)
+                //     asiacont.setAttribute('visible',true)
+                // }
+                // northamerica.onclick = () => {
+                //     console.log("click6")
+                //     globe.setAttribute('visible',false)
+                //     asiacont.setAttribute('visible',true)
+                // }
+                // southamerica.onclick = () => {
+                //     console.log("click7")
+                //     globe.setAttribute('visible',false)
+                //     asiacont.setAttribute('visible',true)
+                // }
+            }
+        })
+
+    </script>
+    <div id="zappar-placement-ui">Tap here to place the object</div>
+
+
+
+
+    </div>
+    <a-scene gesture-detector globe-click>
+        <!-- Ask user for camera permissions, display some text if permission is denied -->
+        <a-entity zappar-permissions-ui id="permissions"></a-entity>
+        <!-- shows a full-page dialog that informs the user they're using an unsupported browser -->
+        <a-entity zappar-compatibility-ui id="compatibility"></a-entity>
+        <a-assets>
+            <a-asset-item id="globemodel" src="assets/Globemodels/ocean2.glb"></a-asset-item>
+            <a-asset-item id="africamodel" src="assets/Globemodels/africa.glb"></a-asset-item>
+            <a-asset-item id="asiamodel" src="assets/Globemodels/asia1.glb"></a-asset-item>
+            <a-asset-item id="europemodel" src="assets/Globemodels/europe.glb"></a-asset-item>
+
+            <a-asset-item id="australiamodel" src="assets/Globemodels/australia.glb"></a-asset-item>
+            <a-asset-item id="antarticamodel" src="assets/Globemodels/antarctica.glb"></a-asset-item>
+            <a-asset-item id="northamericamodel" src="assets/Globemodels/north america.glb"></a-asset-item>
+            <a-asset-item id="southamericamodel" src="assets/Globemodels/south america.glb"></a-asset-item>
+
+            <!-- <a-asset-item id="africacontmodel" src="assets/Globemodels/na try1 (1).glb"></a-asset-item>
+        <a-asset-item id="chest1modelafrica" src="assets/Globemodels/chestcolor1.glb"></a-asset-item>
+        <a-asset-item id="chest2modelafrica" src="assets/Globemodels/chestcolor1.glb"></a-asset-item>
+        <a-asset-item id="chest3modelafrica" src="assets/Globemodels/chestcolor1.glb"></a-asset-item>
+
+        <a-asset-item id="asiacontmodel" src="assets/Globemodels/na try1 (1).glb"></a-asset-item>
+        <a-asset-item id="chest1modelasia" src="assets/Globemodels/chestcolor1.glb"></a-asset-item>
+        <a-asset-item id="chest2modelasia" src="assets/Globemodels/chestcolor1.glb"></a-asset-item>
+        <a-asset-item id="chest3modelasia" src="assets/Globemodels/chestcolor1.glb"></a-asset-item>
+
+        <a-asset-item id="europecontmodel" src="assets/Globemodels/na try1 (1).glb"></a-asset-item>
+        <a-asset-item id="chest1modeleurope" src="assets/Globemodels/chestcolor1.glb"></a-asset-item>
+        <a-asset-item id="chest2modeleurope" src="assets/Globemodels/chestcolor1.glb"></a-asset-item>
+        <a-asset-item id="chest3modeleurope" src="assets/Globemodels/chestcolor1.glb"></a-asset-item> -->
+
+            <!-- <a-asset-item id="australiacontmodel" src="assets/Globemodels/Australia/aus.glb"></a-asset-item> -->
+            <!-- <a-asset-item id="chest1modelaustralia" src="assets/Globemodels/Australia/aus chest1.glb"></a-asset-item>
+            <a-asset-item id="chest2modelaustralia" src="assets/Globemodels/Australia/aus chest2.glb"></a-asset-item>
+            <a-asset-item id="chest3modelaustralia" src="assets/Globemodels/Australia/aus chest3.glb"></a-asset-item> -->
+            <!-- <a-asset-item id="kangaroomodel" src="assets/Globemodels/Australia/kangaroo.glb"></a-asset-item> -->
+
+
+            <!-- <a-asset-item id="antarticacontmodel" src="assets/Globemodels/na try1 (1).glb"></a-asset-item>
+        <a-asset-item id="chest1modelantartica" src="assets/Globemodels/chestcolor1.glb"></a-asset-item>
+        <a-asset-item id="chest2modelantartica" src="assets/Globemodels/chestcolor1.glb"></a-asset-item>
+        <a-asset-item id="chest3modelantartica" src="assets/Globemodels/chestcolor1.glb"></a-asset-item>
+
+        <a-asset-item id="northamericacontmodel" src="assets/Globemodels/na try1 (1).glb"></a-asset-item>
+        <a-asset-item id="chest1modelnorthamerica" src="assets/Globemodels/chestcolor1.glb"></a-asset-item>
+        <a-asset-item id="chest2modelnorthamerica" src="assets/Globemodels/chestcolor1.glb"></a-asset-item>
+        <a-asset-item id="chest3modelnorthamerica" src="assets/Globemodels/chestcolor1.glb"></a-asset-item> -->
+
+
+
+
+
+
+
+
+        </a-assets>
+        <a-camera id="camera" position="0 8 8" raycaster="objects: .cantap" cursor="
+                  fuse: false;
+                  rayOrigin: mouse;" zappar-camera />
+
+        <a-entity light="type: directional;
+             intensity: 0.8;
+        shadowMapHeight:2048;
+          shadowMapWidth:2048;
+          shadowCameraTop: 10;
+                target: #australiacont;" position="1 4.3 2.5" shadow>
+        </a-entity>
+        <a-light type="ambient" intensity="0.8"></a-light>
+
+
+        <!-- Setup our instant tracker and start it in placement mode so the user can -->
+        <!-- choose a location for the object -->
+        <a-entity zappar-instant="placement-mode: true" id="instant-tracker">
+            <!-- <a-entity id="australiacont" visible="false" class="cantap clickable" position="0 -1 0" gesture-handler="minScale: 0.25; maxScale: 10"  gltf-model="#australiacontmodel" > -->
+            <!-- <a-entity id="ausc1" class="cantap clickable"  animation-mixer="clip:HarrisChestClips ; loop: repeat" gltf-model="#chest1modelaustralia">
+                </a-entity>
+                <a-entity id="ausc2" class="cantap clickable"  animation-mixer="clip:HarrisChestClips ; loop: repeat" gltf-model="#chest2modelaustralia">
+                </a-entity>
+                <a-entity id="ausc3" class="cantap clickable"  animation-mixer="clip:HarrisChestClips ; loop: repeat" gltf-model="#chest3modelaustralia">
+                </a-entity> -->
+            <!-- </a-entity> -->
+
+            <!-- 
+            <a-entity id="globe" visible="true" class="cantap clickable" gesture-handler="minScale: 0.25; maxScale: 10"
+                gltf-model="#globemodel" scale="0.5 0.5 0.5" position="0 0 -3"> -->
+            <!-- <a-entity id="africa" class="cantap clickable" gltf-model="#africamodel"></a-entity>
+                <a-entity id="asia" class="cantap clickable" gltf-model="#asiamodel"></a-entity>
+                <a-entity id="europe" class="cantap clickable" gltf-model="#europemodel"></a-entity>
+
+                <a-entity id="australia" class="cantap clickable" gltf-model="#australiamodel"></a-entity>
+                
+                <a-entity  id="antartica" class="cantap clickable" gltf-model="#antarticamodel"></a-entity>
+                <a-entity id="northamerica" class="cantap clickable" gltf-model="#northamericamodel"></a-entity>
+                <a-entity id="southamerica" class="cantap clickable" gltf-model="#southamericamodel"></a-entity> -->
+            <!-- </a-entity> -->
+
+
+            <!-- </a-entity> -->
+
+            <!-- <a-entity
+            light="type: directional;
+               intensity: 2;
+               castShadow: true;
+               shadowMapHeight:2048;
+               shadowMapWidth:2048;
+               shadowCameraTop: 10;
+               target: #asiacont;"
+            position="1 4.3 2.5"
+         
+            shadow>
+        </a-entity> -->
+            <!-- <a-entity
+            light="type: directional;
+               intensity: 1.5;
+               castShadow: true;
+               shadowMapHeight:2048;
+               shadowMapWidth:2048;
+               shadowCameraTop: 10;
+               target: #chest1;"
+            position="1 4.3 2.5"
+         
+            shadow>
+        </a-entity> -->
+            <!-- <a-light type="ambient" intensity="1.5"></a-light> -->
+
+            <!-- <a-entity
+        light="type: directional;
+           intensity: 2;
+           
+           target: #globe;"
+        position="0.8 1.1 2.3"
+       
+        shadow>
+    </a-entity> -->
+
+        </a-entity>
+
+    </a-scene>
+
+    <script>
+
+
+        // Listen for when the user taps the UI
+        const placementUI = document.getElementById("zappar-placement-ui");
+        placementUI.addEventListener("click", function () {
+            // Set placement mode to false on our instant tracker
+            const instantTracker = document.getElementById("instant-tracker");
+            instantTracker.setAttribute("zappar-instant", "placement-mode: false");
+            // And remove the placement UI
+            placementUI.remove();
+        });
+    </script>
+</body>
+
+
+
+</html>
+
+<!-- https://github.com/rachit-chaudhary/milkybar-world-map-ar.git -->
